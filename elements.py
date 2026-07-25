@@ -1,37 +1,56 @@
-class Bird:
-
-    def __init__(self, pos_y):
-
-        self.pos_y = pos_y
-        self.velocity = 0
-        self.gravity = 0.1
-
-    def jump(self):
-
-        self.velocity = -6
-
-    def update(self):
-
-        self.velocity += self.gravity
-        self.pos_y += self.velocity
-
-class Pipe:
+import pygame
+class Passaro:
 
     def __init__(self):
 
-        self.width = 10
-        self.speed = 5
+        self.pos_x = 200
+        self.pos_y = 370
+        self.cor = (255, 255, 0)
+        self.velocidade = 0
+        self.gravidade = 0.1
 
-class UpperPipe(Pipe):
+    def jump(self):
 
-    def __init__(self, heigth):
+        self.velocidade = -6
+
+    def update(self):
+
+        self.velocidade += self.gravidade
+        self.pos_y += self.velocidade
+
+    def draw(self, tela):
+
+        pygame.draw.rect(tela, self.cor, (self.pos_x, self.pos_y, 40, 40))
+
+class Chao:
+
+    def __init__(self):
+
+        self.pos_x = 0
+        self. pos_y = 760
+        self.cor = (136, 231, 136)
+
+    def draw(self, tela):
+    
+            pygame.draw.rect(tela, self.cor, (self.pos_x, self.pos_y, 600, 100))
+    
+class Cano:
+
+    def __init__(self):
+
+        self.largura = 10
+        self.velocidade = 5
+
+class CanoSuperior(Cano):
+
+    def __init__(self, altura):
 
         super().__init__()
-        self.heigth = heigth
+        self.altura = altura
 
-class LowerPipe(Pipe):
+class CanoInferior(Cano):
 
-    def __init__(self, heigth):
+    def __init__(self, altura):
 
         super().__init__()
-        self.heigth = heigth
+        self.altura = altura
