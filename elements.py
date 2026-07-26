@@ -1,4 +1,5 @@
 import pygame
+from random import randint
 class Passaro:
 
     def __init__(self):
@@ -21,7 +22,6 @@ class Passaro:
     def draw(self, tela):
 
         pygame.draw.rect(tela, self.cor, (self.pos_x, self.pos_y, 40, 40))
-
 class Chao:
 
     def __init__(self):
@@ -34,23 +34,30 @@ class Chao:
     
             pygame.draw.rect(tela, self.cor, (self.pos_x, self.pos_y, 600, 100))
     
-class Cano:
+class Canos:
 
-    def __init__(self):
+    def __init__(self, x):
 
-        self.largura = 10
-        self.velocidade = 5
+        self.pos_x = x
+        self.largura = 40
+        self.cor = (34, 139, 34)
+        self.velocidade = 4
+        
+        self.espaço = 150
 
-class CanoSuperior(Cano):
 
-    def __init__(self, altura):
+        self.altura_topo = randint(50, 560)
 
-        super().__init__()
-        self.altura = altura
+        self.pos_y_inferior = self.altura_topo + self.espaço
 
-class CanoInferior(Cano):
+        self.altura_base = 760 - self.pos_y_inferior
 
-    def __init__(self, altura):
+    def update(self):
 
-        super().__init__()
-        self.altura = altura
+        self.pos_x -= self.velocidade
+
+    def draw(self, tela):
+
+        pygame.draw.rect(tela, self.cor, (self.pos_x, 0, self.largura, self.altura_topo))
+
+        pygame.draw.rect(tela, self.cor, (self.pos_x, self.pos_y_inferior, self.largura, self.altura_base))
