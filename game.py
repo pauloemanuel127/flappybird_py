@@ -97,6 +97,3 @@ class Jogo:
             self.eventos()
             self.atualizar()
             self.desenhar()
-
-jogo = Jogo()
-jogo.run()
